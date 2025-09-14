@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<style>
+    table,th,td {
+        border: 1px solid black;
+        }
+</style>
+<body>
+    <h1>transactions:</h1>
+    <h3>Incomes:</h3>
+    <table width="40%">
+        <tr>
+            <th>user</th>
+            <th>amount</th>
+            <th>date</th>
+            <th>source</th>
+        </tr>
+        <tr>
+            {% for income in incomes %}
+            <td>{{ income.user }}</td>
+            <td>{{ income.amount }}</td>
+            <td>{{ income.date }}</td>
+            <td>{{ income.source }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3>expenses:</h3>    
+    <table>
+        <tr>
+            <th>user</th>
+            <th>amount</th>
+            <th>date</th>
+            <th>category</th>
+        </tr>
+        <tr>
+            {% for outlay in outlays %}
+            <td>{{ outlay.user }}</td>
+            <td>{{ outlay.amount }}</td>
+            <td>{{ outlay.date }}</td>
+            <td>{{ outlay.category }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
