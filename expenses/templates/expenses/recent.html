@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        table, th, td {
+  border: 2px solid blue;
+}
+
+    </style>
+    <body>
+        <h3>Incomes for last {{days}} days:</h3>
+        <table width="50%">
+            <tr>
+                <th><b>Amount</b></th>
+                <th><b>Source</b></th>
+                <th><b>User</b></th>
+                <th><b>Date</b></th>
+            </tr>
+            {% for income in recent_incomes %}
+            <tr>
+                <td>{{income.amount}}</td>
+                <td>{{income.source}}</td>
+                <td>{{income.user}}</td>
+                <td>{{income.date}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <h3>Expenses for last {{days}} days:</h3>
+        <table>
+            <tr>
+                <th><b>Amount</b></th>
+                <th><b>Category</b></th>
+                <th><b>User</b></th>
+                <th><b>Date</b></th>
+            </tr>
+            {% for out in recent_outlays %}
+            <tr>
+                <td>{{out.amount}}</td>
+                <td>{{out.category}}</td>
+                <td>{{out.user}}</td>
+                <td>{{out.date}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+
+</html>
