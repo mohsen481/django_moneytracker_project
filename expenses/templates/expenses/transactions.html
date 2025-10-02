@@ -30,14 +30,14 @@
             <th>user</th>
             <th>amount</th>
             <th>date</th>
-            <th>category</th>
+            <th>text</th>
         </tr>
         <tr>
-            {% for outlay in outlays %}
-            <td>{{ outlay.user }}</td>
-            <td>{{ outlay.amount }}</td>
-            <td>{{ outlay.date }}</td>
-            <td>{{ outlay.category }}</td>
+            {% for expense in expenses %}
+            <td>{{ expense.user }}</td>
+            <td>{{ expense.amount }}</td>
+            <td>{{ expense.date }}</td>
+            <td>{{ expense.text }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -28,16 +28,16 @@
         <table>
             <tr>
                 <th><b>Amount</b></th>
-                <th><b>Category</b></th>
+                <th><b>Text</b></th>
                 <th><b>User</b></th>
                 <th><b>Date</b></th>
             </tr>
-            {% for out in recent_outlays %}
+            {% for expense in recent_expenses %}
             <tr>
-                <td>{{out.amount}}</td>
-                <td>{{out.category}}</td>
-                <td>{{out.user}}</td>
-                <td>{{out.date}}</td>
+                <td>{{expense.amount}}</td>
+                <td>{{expense.text}}</td>
+                <td>{{expense.user}}</td>
+                <td>{{expense.date}}</td>
             </tr>
             {% endfor %}
         </table>

@@ -1,28 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Income,Outlay
+from .models import Income,Expense
 import datetime
 from django.utils import timezone
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
-def index(request):
-    incomes = Income.objects.all()          
+def index(request):          
     return HttpResponse(request.user)
 def show_transactions(request):
     incomes = Income.objects.all()
-    outlays = Outlay.objects.all()
+    expenses = Expense.objects.all()
     context = {
         'incomes': incomes,
-        'outlays': outlays
+        'expenses': expenses
     }
     return render(request, 'expenses/transactions.html', context)
 @login_required
 def show_recent_transactions(request,days):
     start_date=timezone.now()-datetime.timedelta(days=days)
     recent_incomes=Income.objects.filter(date__gte=start_date)
-    recent_outlays=Outlay.objects.filter(date__gte=start_date)
-    contex={"recent_incomes":recent_incomes,"recent_outlays":recent_outlays,"days":days}
+    recent_expenses=Expense.objects.filter(date__gte=start_date)
+    contex={"recent_incomes":recent_incomes,"recent_outlays":recent_expenses,"days":days}
     return render(request,"expenses/recent.html",contex)
 def login_view(request):
     username=request.POST.get("username")
