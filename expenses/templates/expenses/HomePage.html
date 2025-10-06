@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .divclass {background-color: rgb(47, 245, 242);
+                       height: 100px;
+                       display: flex;
+                       justify-content: space-around;
+                       align-items: center
+                    ;
+                        }
+        </style>
+    </head>
+    <body>
+        <!--write a html-css for home page-->
+        <h1 style="text-align:center; margin-top:40px; font-family:sans-serif; color:#222;">
+            Welcome to MoneyTracker
+        </h1>
+        <p style="text-align:center; font-size:1.2em; color:#444; font-family:sans-serif;">
+            Track your expenses, manage your budget.
+        </p>
+        <div style="display: flex; justify-content: center; margin: 40px 0;"></div>
+            <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 30px 40px; text-align: center;">
+                <h2 style="font-family:sans-serif; color:#1a8cff; margin-bottom: 15px;">Get Started</h2>
+                <p style="color:#555; font-size:1em; margin-bottom: 25px;">
+                    New here? Please create an account.<a href="{% url 'register' %}">Create Account</a>
+                </p>
+                <p style="color:#555; font-size:1em;">
+                    Already have an account? <a href="{% url 'login' %}" style="color:#1a8cff; text-decoration:underline;">Log in</a> to view your dashboard.
+                </p>
+            </div>
+        </div>
+        <div class="divclass">
+            <a style="color: black;" href="{% url 'login' %}">LOGIN</a>
+            <a style="color: black;" href="{% url 'register' %}">REGISTER</a>
+        </div>
+    </body>
+    
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'expenses/style.css' %}">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:aquamarine;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            text-align: center;
+        }
+        .welcome-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 50px 70px;
+            border-radius: 20px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+        h1 {
+            font-size: 2.7rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 12px #000;
+            letter-spacing: 1px;
+        }
+        .btn-transactions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            font-size: 1.25rem;
+            color: #fff;
+            background: linear-gradient(90deg, #1fa2ff 0%, #12d8fa 50%, #a6ffcb 100%);
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 6px 18px rgba(31,162,255,0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-transactions:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 12px 32px rgba(31,162,255,0.35);
+            background: linear-gradient(90deg, #12d8fa 0%, #1fa2ff 100%);
+        }
+        .btn-transactions img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: #fff;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .welcome-box {
+                padding: 20px 10px;
+            }
+            .btn-transactions {
+                padding: 10px 12px;
+                font-size: 1rem;
+            }
+            .btn-transactions img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-box">
+        <h1>Welcome {{ username }}!</h1>
+        <a href="{% url 'show_transactions' %}" class="btn-transactions">
+            <img src="{% static 'expenses/images/table2.png' %}" alt="Transactions">
+            View Transactions
+        </a>
+        <br>
+        <a href="{% url 'reports' %}" class="btn-transactions" style="margin-top:18px; background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);">
+            <img src="{% static 'expenses/images/report.jpg' %}" alt="Reports">
+            View Reports
+        </a>
+    </div>
+</body>
+</html>

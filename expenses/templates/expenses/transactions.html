@@ -1,22 +1,64 @@
 <!DOCTYPE html>
 <html>
-<style>
-    table,th,td {
-        border: 1px solid black;
+<head>
+    <title>Transactions</title>
+    <style>
+        body {
+            background: #f4f6f8;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-</style>
+        h1 {
+            color: #1976d2;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #333;
+            margin-top: 2rem;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin-bottom: 2rem;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.9rem 1.2rem;
+            text-align: left;
+        }
+        th {
+            background: #1976d2;
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:nth-child(even) td {
+            background: #f0f4fa;
+        }
+        tr:hover td {
+            background: #e3eafc;
+        }
+    </style>
+</head>
 <body>
-    <h1>transactions:</h1>
-    <h3>Incomes:</h3>
-    <table width="40%">
+    <h1>Transactions</h1>
+    <h3>Incomes</h3>
+    <table>
         <tr>
-            <th>user</th>
-            <th>amount</th>
-            <th>date</th>
-            <th>source</th>
+            <th>User</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Source</th>
         </tr>
+        {% for income in incomes %}
         <tr>
-            {% for income in incomes %}
             <td>{{ income.user }}</td>
             <td>{{ income.amount }}</td>
             <td>{{ income.date }}</td>
@@ -24,16 +66,16 @@
         </tr>
         {% endfor %}
     </table>
-    <h3>expenses:</h3>    
+    <h3>Expenses</h3>
     <table>
         <tr>
-            <th>user</th>
-            <th>amount</th>
-            <th>date</th>
-            <th>text</th>
+            <th>User</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Text</th>
         </tr>
+        {% for expense in expenses %}
         <tr>
-            {% for expense in expenses %}
             <td>{{ expense.user }}</td>
             <td>{{ expense.amount }}</td>
             <td>{{ expense.date }}</td>
