@@ -18,7 +18,7 @@
         }
         .welcome-box {
             background: rgba(0, 0, 0, 0.6);
-            padding: 50px 70px;
+            padding: 60px 100px;
             border-radius: 20px;
             box-shadow: 0 12px 32px rgba(0,0,0,0.7);
             backdrop-filter: blur(2px);
@@ -74,9 +74,39 @@
                 height: 24px;
             }
         }
+        .container {
+            background-color: black;
+            text-align: center;
+            height: 100px;
+            overflow: hidden;
+            margin: 0;
+
+        }
+        .container a {
+            float: left;
+            color:white;
+            font-weight: bold;
+            font-size: 17px;
+            text-decoration: none;
+            padding: 14px 16px;
+        }
+        .container a:hover {
+            background-color: #ddd;
+            color: black;
+            
+        }
+        .container a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <div class="container" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 10;">
+        <a class="active" href="#">Dashboard</a>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'login' %}">LogOut</a>
+    </div>
     <div class="welcome-box">
         <h1>Welcome {{ username }}!</h1>
         <a href="{% url 'show_transactions' %}" class="btn-transactions">
@@ -89,5 +119,6 @@
             View Reports
         </a>
     </div>
+    
 </body>
 </html>

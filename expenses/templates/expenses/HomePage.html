@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+    {% load static %}
     <head>
+        <link rel="stylesheet" href="{% static 'expenses/style.css' %}">
         <style>
             .divclass {background-color: rgb(47, 245, 242);
                        height: 100px;
@@ -12,7 +14,11 @@
         </style>
     </head>
     <body>
-        <!--write a html-css for home page-->
+        <div class="container" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 10;">
+        <a  href="{% url 'dashboard' %}">Dashboard</a>
+        <a class="active" href="#">Home</a>
+        <a href="{% url 'login' %}">LogOut</a>
+    </div>
         <h1 style="text-align:center; margin-top:40px; font-family:sans-serif; color:#222;">
             Welcome to MoneyTracker
         </h1>

@@ -52,9 +52,9 @@ def register_view(request):
         return redirect("index")
     return render(request,"expenses/accounts/register.html")
 @login_required
-def dashbord(request):
+def dashboard(request):
     username=request.user
-    return render(request,"expenses/dashbord.html",{"username":username})
+    return render(request,"expenses/dashboard.html",{"username":username})
 @login_required
 @require_GET
 def reports(request):
