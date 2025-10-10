@@ -61,11 +61,16 @@
 <body>
     <h1>Transactions</h1>
     <h3>Incomes</h3>
+    
     <table>
         <tr>
             <th>Action</th>
             <th>User</th>
-            <th>Amount</th>
+            <th>Amount<div><a href="?sort_incomes=asc&sort_expenses={{ request.GET.sort_expenses|default:'' }}">⬆️</a>
+<a href="?sort_incomes=desc&sort_expenses={{ request.GET.sort_expenses|default:'' }}">⬇️</a>
+<a href="?sort_expenses={{ request.GET.sort_expenses|default:'' }}">Reset↻</a>
+
+    </div></th>
             <th>Date</th>
             <th>Source</th>
         </tr>
@@ -101,7 +106,11 @@
         <tr>
             <th>Action</th>
             <th>User</th>
-            <th>Amount</th>
+            <th>Amount<div><a href="?sort_expenses=asc&sort_incomes={{ request.GET.sort_incomes|default:'' }}">⬆️</a>
+<a href="?sort_expenses=desc&sort_incomes={{ request.GET.sort_incomes|default:'' }}">⬇️</a>
+<a href="?sort_incomes={{ request.GET.sort_incomes|default:'' }}">Reset↻</a>
+
+    </div></th>
             <th>Date</th>
             <th>Text</th>
         </tr>

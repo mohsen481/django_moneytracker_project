@@ -57,8 +57,20 @@ def show_transactions(request):
             Expense.objects.create(amount=amount,date=date,text=text,user=request.user)
             return redirect('show_transactions')
     else:
-        incomes = Income.objects.all()
-        expenses = Expense.objects.all()
+        sort_incomes=request.GET.get('sort_incomes','')
+        sort_expenses=request.GET.get('sort_expenses','')
+        if sort_incomes=='asc':
+            incomes=Income.objects.order_by('amount')
+        elif sort_incomes=='desc':
+            incomes=Income.objects.order_by('-amount')
+        else:
+            incomes = Income.objects.all()
+        if sort_expenses=='asc':
+            expenses=Expense.objects.order_by('amount')
+        elif sort_expenses=='desc':
+            expenses=Expense.objects.order_by('-amount')
+        else:
+            expenses = Expense.objects.all()
         context = {
             'incomes': incomes,
             'expenses': expenses
