@@ -45,6 +45,17 @@
         tr:hover td {
             background: #e3eafc;
         }
+        .button {
+            padding: 10px 20px;
+            background-color: #2cd629;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            
+        }
     </style>
 </head>
 <body>
@@ -52,6 +63,7 @@
     <h3>Incomes</h3>
     <table>
         <tr>
+            <th>Action</th>
             <th>User</th>
             <th>Amount</th>
             <th>Date</th>
@@ -59,6 +71,11 @@
         </tr>
         {% for income in incomes %}
         <tr>
+            <td><form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="income_id" value="{{ income.id }}">
+                <button style="background-color: red; padding: 5px 10px; border: none; border-radius: 4px; color: white; cursor: pointer;" type="submit">Delete</button>
+            </form></td>
             <td>{{ income.user }}</td>
             <td>{{ income.amount }}</td>
             <td>{{ income.date }}</td>
@@ -66,9 +83,23 @@
         </tr>
         {% endfor %}
     </table>
+    <button  class="button" popovertarget="myform">ADD INCOME</button>
+    <form id="myform" popover action="{% url 'show_transactions' %}" method="POST">
+        <input type="number" id="amount" name="amount">
+        <label for="amount">Amount</label>
+        <input type="datetime-local" id="date" name="date">
+        <label for="date">Date</label>
+        <input id="text" name="source">
+        <label for="source">Source</label>
+        <input type="hidden" name="add_income" value="1">
+        <input type="submit" value="ADD" style="background-color: rgb(11, 186, 11); color: white;">
+        {% csrf_token %}
+    </form>
+
     <h3>Expenses</h3>
     <table>
         <tr>
+            <th>Action</th>
             <th>User</th>
             <th>Amount</th>
             <th>Date</th>
@@ -76,6 +107,11 @@
         </tr>
         {% for expense in expenses %}
         <tr>
+            <td><form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="expense_id" value="{{ expense.id }}">
+                <button style="background-color: red; padding: 5px 10px; border: none; border-radius: 4px; color: white; cursor: pointer;" type="submit">Delete</button>
+            </form></td>
             <td>{{ expense.user }}</td>
             <td>{{ expense.amount }}</td>
             <td>{{ expense.date }}</td>
@@ -83,5 +119,18 @@
         </tr>
         {% endfor %}
     </table>
+        <button  class="button" popovertarget="expense_form">ADD EXPENSE</button>
+    <form id="expense_form" name="add_expense" popover action="{% url 'show_transactions' %}" method="POST">
+        <input type="number" id="amount" name="amount">
+        <label for="amount">Amount</label>
+        <input type="datetime-local" id="date" name="date">
+        <label for="date">Date</label>
+        <input id="expense_text" name="text">
+        <label for="text">Text</label>
+        <input type="submit" value="ADD" style="background-color: rgb(11, 186, 11); color: white;">
+        <input type="hidden" name="add_expense" value="1">
+        {% csrf_token %}
+    </form>
+
 </body>
 </html>

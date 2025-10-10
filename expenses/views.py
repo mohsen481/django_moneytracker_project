@@ -8,19 +8,63 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.views.decorators.http import require_GET
-from django.db import models
+from django.db import models 
+from django.utils.dateparse import parse_datetime
 
 def index(request):          
     return render(request,'expenses/HomePage.html')
 @login_required
 def show_transactions(request):
-    incomes = Income.objects.all()
-    expenses = Expense.objects.all()
-    context = {
-        'incomes': incomes,
-        'expenses': expenses
-    }
-    return render(request, 'expenses/transactions.html', context)
+    if request.method=="POST":
+        #Delete selected income
+        if 'income_id' in request.POST:
+            income_id=request.POST.get('income_id')
+            try:
+                income=Income.objects.get(id=income_id)
+                income.delete()
+                return redirect('show_transactions')
+            except Income.DoesNotExist:
+                return HttpResponse("Income not found!")
+        #Delete selected expense
+        elif 'expense_id' in request.POST:
+            expense_id=request.POST.get('expense_id')
+            try:
+                expense=Expense.objects.get(id=expense_id)
+                expense.delete()
+                return redirect('show_transactions')
+            except Expense.DoesNotExist:
+                return HttpResponse("Expense not found!")
+        #Add income 
+        elif 'add_income' in request.POST:
+            amount=int(request.POST.get('amount'))
+            date=parse_datetime(request.POST.get('date'))
+            source=request.POST.get('source')
+            if timezone.is_naive(date):
+                date=timezone.make_aware(date,timezone.get_current_timezone())
+            if amount<0 or date>timezone.now():
+                return HttpResponse("Invalid data: amount cannot be negative and date cannot be in future")
+            Income.objects.create(amount=amount,date=date,source=source,user=request.user)
+            return redirect('show_transactions')
+        #Add expense
+        else:
+            amount=int(request.POST.get('amount'))
+            date=parse_datetime(request.POST.get('date'))
+            text=request.POST.get('text')
+            if timezone.is_naive(date):
+                date=timezone.make_aware(date,timezone.get_current_timezone())
+            if amount<0 or date>timezone.now():
+                return HttpResponse("Invalid data: amount cannot be negative and date cannot be in future")
+            Expense.objects.create(amount=amount,date=date,text=text,user=request.user)
+            return redirect('show_transactions')
+    else:
+        incomes = Income.objects.all()
+        expenses = Expense.objects.all()
+        context = {
+            'incomes': incomes,
+            'expenses': expenses
+        }
+        return render(request, 'expenses/transactions.html', context)
+    
 @login_required
 def show_recent_transactions(request,days):
     start_date=timezone.now()-datetime.timedelta(days=days)
@@ -35,11 +79,14 @@ def login_view(request):
         user=authenticate(request,username=username,password=password)
         if user:
             login(request,user)
-            return redirect('dashbord')
+            return redirect('dashboard')
         else:
             msg="Invalid username or password"
             return render(request,"expenses/accounts/login.html",{"msg":msg})
     return render(request,"expenses/accounts/login.html")
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -107,8 +154,6 @@ def reports(request):
         'request': request,
     }
     return render(request, "expenses/reports.html", context)
-
-    
 
 
     

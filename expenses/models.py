@@ -12,9 +12,9 @@ class Income(models.Model):
             raise ValidationError("Income amount cannot be negative")
         if self.date > timezone.now():
             raise ValidationError("Income date cannot be in the future")
-    def save(self):
+    def save(self, *args, **kwargs):
         self.clean()
-        super().save()
+        super().save(*args, **kwargs)
     def __str__(self):
         return (f"income from {self.source}: {self.amount}.   Date: {self.date}")
 class Expense(models.Model):
@@ -27,9 +27,9 @@ class Expense(models.Model):
             raise ValidationError("Expense amount cannot be negative")
         if self.date > timezone.now():
             raise ValidationError("Expense date cannot be in the future")
-    def save(self):
+    def save(self,*args,**kwargs):
         self.clean()
-        super().save()
+        super().save(*args,**kwargs)
     def __str__(self):
         return (f"{self.text} cost:{self.amount}.   Date: {self.date}")
 
