@@ -20,3 +20,9 @@ pip install -r requirements.txt
 python manage.py runserver
 
 باز کردن در مرورگر:/http://127.0.0.1:8000
+## screenshots
+![home](expenses/static/expenses/images/home.png)
+![dahboard](expenses/static/expenses/images/dashboard.png)
+![transactions](expenses/static/expenses/images/transactions.png)
+![reports](expenses/static/expenses/images/reports.png)
+![login](expenses/static/expenses/images/login.png)
