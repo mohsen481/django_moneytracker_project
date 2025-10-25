@@ -60,11 +60,11 @@ def show_transactions(request):
         sort_incomes=request.GET.get('sort_incomes','')
         sort_expenses=request.GET.get('sort_expenses','')
         if sort_incomes=='asc':
-            incomes=Income.objects.order_by('amount')
+            incomes=Income.objects.filter(user=request.user).order_by('amount')
         elif sort_incomes=='desc':
-            incomes=Income.objects.order_by('-amount')
+            incomes=Income.objects.filter(user=request.user).order_by('-amount')
         else:
-            incomes = Income.objects.all()
+            incomes = Income.objects.filter(user=request.user)
         if sort_expenses=='asc':
             expenses=Expense.objects.order_by('amount')
         elif sort_expenses=='desc':
