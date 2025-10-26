@@ -1,9 +1,8 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.contrib.auth.models import User
 from django.utils import timezone
 class Income(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    user=models.ForeignKey("auth.User",related_name="incomes",on_delete=models.CASCADE,null=True)
     amount=models.IntegerField()
     date=models.DateTimeField()
     source=models.CharField(max_length=100)
@@ -18,7 +17,7 @@ class Income(models.Model):
     def __str__(self):
         return (f"income from {self.source}: {self.amount}.   Date: {self.date}")
 class Expense(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    user=models.ForeignKey("auth.User",related_name="expenses",on_delete=models.CASCADE,null=True)
     amount=models.BigIntegerField()
     date=models.DateTimeField()
     text=models.CharField(max_length=100)
