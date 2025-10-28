@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_GET
 from django.db import models 
 from django.utils.dateparse import parse_datetime
+from datetime import datetime
 
 def index(request):          
     return render(request,'expenses/HomePage.html')
@@ -37,22 +38,20 @@ def show_transactions(request):
         #Add income 
         elif 'add_income' in request.POST:
             amount=int(request.POST.get('amount'))
-            date=parse_datetime(request.POST.get('date'))
+            str_date=request.POST.get('date')
+            date= datetime.strptime(str_date, "%Y-%m-%d").date()
             source=request.POST.get('source')
-            if timezone.is_naive(date):
-                date=timezone.make_aware(date,timezone.get_current_timezone())
-            if amount<0 or date>timezone.now():
+            if amount<0 or date>timezone.now().date():
                 return HttpResponse("Invalid data: amount cannot be negative and date cannot be in future")
             Income.objects.create(amount=amount,date=date,source=source,user=request.user)
             return redirect('show_transactions')
         #Add expense
         else:
             amount=int(request.POST.get('amount'))
-            date=parse_datetime(request.POST.get('date'))
+            str_date=request.POST.get('date')
+            date= datetime.strptime(str_date, "%Y-%m-%d").date()
             text=request.POST.get('text')
-            if timezone.is_naive(date):
-                date=timezone.make_aware(date,timezone.get_current_timezone())
-            if amount<0 or date>timezone.now():
+            if amount<0 or date>timezone.now().date():
                 return HttpResponse("Invalid data: amount cannot be negative and date cannot be in future")
             Expense.objects.create(amount=amount,date=date,text=text,user=request.user)
             return redirect('show_transactions')

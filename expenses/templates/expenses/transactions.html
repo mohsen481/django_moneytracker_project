@@ -92,7 +92,7 @@
     <form id="myform" popover action="{% url 'show_transactions' %}" method="POST">
         <input type="number" id="amount" name="amount">
         <label for="amount">Amount</label>
-        <input type="datetime-local" id="date" name="date">
+        <input type="date" id="date" name="date">
         <label for="date">Date</label>
         <input id="text" name="source">
         <label for="source">Source</label>
@@ -132,7 +132,7 @@
     <form id="expense_form" name="add_expense" popover action="{% url 'show_transactions' %}" method="POST">
         <input type="number" id="amount" name="amount">
         <label for="amount">Amount</label>
-        <input type="datetime-local" id="date" name="date">
+        <input type="date" id="date" name="date">
         <label for="date">Date</label>
         <input id="expense_text" name="text">
         <label for="text">Text</label>
