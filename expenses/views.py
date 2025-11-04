@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_GET
 from django.db import models 
 from django.utils.dateparse import parse_datetime
-from datetime import datetime
+import datetime
 
 def index(request):          
     return render(request,'expenses/HomePage.html')
@@ -75,14 +75,6 @@ def show_transactions(request):
             'expenses': expenses
         }
         return render(request, 'expenses/transactions.html', context)
-    
-@login_required
-def show_recent_transactions(request,days):
-    start_date=timezone.now()-datetime.timedelta(days=days)
-    recent_incomes=Income.objects.filter(date__gte=start_date)
-    recent_expenses=Expense.objects.filter(date__gte=start_date)
-    contex={"recent_incomes":recent_incomes,"recent_outlays":recent_expenses,"days":days}
-    return render(request,"expenses/recent.html",contex)
 def login_view(request):
     if request.method=="POST":
         username=request.POST.get("username")
