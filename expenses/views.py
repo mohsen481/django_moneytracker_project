@@ -39,7 +39,7 @@ def show_transactions(request):
         elif 'add_income' in request.POST:
             amount=int(request.POST.get('amount'))
             str_date=request.POST.get('date')
-            date= datetime.strptime(str_date, "%Y-%m-%d").date()
+            date= datetime.datetime.strptime(str_date, "%Y-%m-%d").date()
             source=request.POST.get('source')
             if amount<0 or date>timezone.now().date():
                 return HttpResponse("Invalid data: amount cannot be negative and date cannot be in future")
@@ -49,7 +49,7 @@ def show_transactions(request):
         else:
             amount=int(request.POST.get('amount'))
             str_date=request.POST.get('date')
-            date= datetime.strptime(str_date, "%Y-%m-%d").date()
+            date= datetime.datetime.strptime(str_date, "%Y-%m-%d").date()
             text=request.POST.get('text')
             if amount<0 or date>timezone.now().date():
                 return HttpResponse("Invalid data: amount cannot be negative and date cannot be in future")
@@ -69,10 +69,11 @@ def show_transactions(request):
         elif sort_expenses=='desc':
             expenses=Expense.objects.order_by('-amount')
         else:
-            expenses = Expense.objects.all()
+            expenses = Expense.objects.filter(user=request.user)
         context = {
             'incomes': incomes,
-            'expenses': expenses
+            'expenses': expenses,
+            
         }
         return render(request, 'expenses/transactions.html', context)
 def login_view(request):
