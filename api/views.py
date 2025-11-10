@@ -10,7 +10,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import AllowAny
 from rest_framework.authentication import TokenAuthentication
-
+from django.db.models import Sum
+from django.utils import timezone
 # Override ObtainAuthToken to allow CSRF exemption.
 @method_decorator(csrf_exempt, name='dispatch')
 class CustomAuthToken(ObtainAuthToken):
@@ -65,4 +66,35 @@ class Show_transactions(APIView):
         expenses_serializer=ExpenseSerializer(expenses,many=True,context={'request': request})            
         incomes_serializer=IncomeSerializer(incomes,many=True,context={'request': request})
         return Response({'incomes': incomes_serializer.data, 'expenses': expenses_serializer.data})
-    
+class ReportView(APIView):
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly]
+    def get(self,request):
+        period=request.query_params.get('period','week')
+        today=timezone.now().date()
+        if period=='week':
+            start_date=today - timezone.timedelta(days=7)
+        elif period=='month':
+            start_date=today - timezone.timedelta(days=30)
+        elif period=='year':
+            start_date=today - timezone.timedelta(days=365)
+        else:
+            return Response({'error': 'Invalid period specified.'}, status=400)
+        total_income=Income.objects.filter(user=request.user,date__gte=start_date,date__lte=today).aggregate(Sum('amount'))['amount__sum'] or 0
+        total_expense=Expense.objects.filter(user=request.user,date__gte=start_date,date__lte=today).aggregate(Sum('amount'))['amount__sum'] or 0
+        net_balance=total_income - total_expense
+        return Response({
+            'total_income': total_income,
+            'total_expense': total_expense,
+            'net_balance': net_balance,
+            'period': period
+        })
+class RegisterUser(APIView):
+    permission_classes=[AllowAny]
+    authentication_classes=[]
+    def post(self,request):
+        serializer=Userserializer(data=request.data)
+        if serializer.is_valid():
+            user=serializer.save()
+            token,created=Token.objects.get_or_create(user=user)
+            return Response({'token': token.key, 'user_id': user.id}, status=201)
+        return Response(serializer.errors,status=400)

@@ -18,9 +18,13 @@ class ExpenseSerializer(serializers.HyperlinkedModelSerializer):
 class Userserializer(serializers.HyperlinkedModelSerializer):
     incomes=serializers.HyperlinkedRelatedField(many=True,view_name='incomes-detail',read_only=True)
     expenses=serializers.HyperlinkedRelatedField(many=True,view_name='expenses-detail',read_only=True)
+    password = serializers.CharField(write_only=True)
     class Meta:
         model=User
-        fields=['id','username','incomes','expenses','url']
-
-
-
+        fields=['id','username','incomes','expenses','url','password']
+    def create(self, validated_data):
+        user=User.objects.create_user(
+            username=validated_data['username'],
+            password=validated_data['password']
+        )
+        return user
