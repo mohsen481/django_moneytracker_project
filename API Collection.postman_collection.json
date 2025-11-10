@@ -1,0 +1,714 @@
+{
+	"info": {
+		"_postman_id": "2798134e-916f-49e5-8d29-f259c2c2fdbb",
+		"name": "API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44840589"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Incomes",
+			"item": [
+				{
+					"name": "get all incomes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/incomes/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"incomes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new income",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"amount\":1,\"date\":\"2025-1-1\",\"source\":\"test\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/incomes/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"incomes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update income",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"amount\":2,\"date\":\"2025-01-01\",\"source\":\"postman\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/incomes/:id/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"incomes",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "24",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete income",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/incomes/:id/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"incomes",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "29"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expenses",
+			"item": [
+				{
+					"name": "delete an expense",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/expenses/:id/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"expenses",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all expenses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/expenses/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"expenses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new expense",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":3,\r\n    \"date\":\"2025-01-01\",\r\n    \"text\":\"test_postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/expenses/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"expenses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update an expense",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\":4,\r\n    \"date\":\"2025-01-01\",\r\n    \"text\":\"test_postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/expenses/:id/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"expenses",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update an expense",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":4,\r\n    \"date\":\"2025-01-01\",\r\n    \"text\":\"test_postman\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/expenses/:id/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"expenses",
+										":id",
+										""
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Nov 2025 12:47:32 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.14.0b1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 8,\n    \"user\": \"mohsen\",\n    \"amount\": 4,\n    \"date\": \"2025-01-01\",\n    \"text\": \"test_postman\",\n    \"url\": \"http://127.0.0.1:8000/api/expenses/8/\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "get token",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRFToken",
+								"value": "lohlNiXpMOM3lLLQv9MPjua1oPW1Npgl",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"testname\",\r\n  \"password\": \"testpass\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/token/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"ABC\",\r\n    \"password\":\"qwerty78\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/register/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"register",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"ABC\",\r\n    \"password\":\"qwerty78\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/register/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"register",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 10 Nov 2025 14:27:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.14.0b1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": [\n        \"A user with that username already exists.\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sort transactions",
+			"item": [
+				{
+					"name": "get sorted incomes and expenses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/transactions?sort_incomes=asc&sort_expenses=desc",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "sort_incomes",
+									"value": "asc"
+								},
+								{
+									"key": "sort_expenses",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "reports for last week",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/reports/?period=week",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reports",
+								""
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "week"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reports for last month",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/reports/?period=month",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reports",
+								""
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "month"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reports for last year",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/reports/?period=year",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reports",
+								""
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "year"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Get financial reports for different periods."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://127.0.0.1:8000/api"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
