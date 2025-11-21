@@ -12,7 +12,7 @@
 python  
 django  
 django rest_framework  
-sqlite
+postgres
 
 # نصب و اجرا
 ```bash
