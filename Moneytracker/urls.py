@@ -22,7 +22,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from api import views as api_views
 urlpatterns = [
-    path("home/",include("expenses.urls")),
+    path("",include("expenses.urls")),
     path("admin/", admin.site.urls),
     path("api/",include("api.urls")),
     path('api-auth/', include('rest_framework.urls')),
