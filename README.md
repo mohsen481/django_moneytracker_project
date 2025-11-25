@@ -1,18 +1,20 @@
 # MoneyTracker
 یه اپ ساده برای مدیریت درآمد و هزینه‌های شخصیه. می‌تونی تراکنش‌ها رو ثبت کنی و موجودی و روند خرج و دخلت رو ببینی.
 
-امکانات
+امکانات:
 
 ثبت درآمد و هزینه
 
 دسته‌بندی تراکنش‌ها
 
-مشاهده تاریخچه و موجودی  
+مشاهده تاریخچه و موجودی
+## Live demo:
+https://django-moneytracker-project.onrender.com  
 ## ابزارها:
 python  
 django  
 django rest_framework  
-postgres
+postgresql
 
 # نصب و اجرا
 ```bash
