@@ -13,7 +13,13 @@
 					"name": "get users",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{baseURL}}/users/",
 							"host": [
@@ -43,8 +49,7 @@
 							{
 								"key": "Authorization",
 								"value": "Token {{token}}",
-								"type": "text",
-								"disabled": true
+								"type": "text"
 							}
 						],
 						"url": {
@@ -223,7 +228,13 @@
 					"name": "get all expenses",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{baseURL}}/expenses/",
 							"host": [
@@ -561,7 +572,13 @@
 					"name": "get sorted incomes and expenses",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:8000/api/transactions?sort_incomes=asc&sort_expenses=desc",
 							"protocol": "http",
@@ -599,7 +616,13 @@
 					"name": "reports for last week",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{baseURL}}/reports/?period=week",
 							"host": [
@@ -626,7 +649,13 @@
 							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{baseURL}}/reports/?period=month",
 							"host": [
@@ -653,7 +682,13 @@
 							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{baseURL}}/reports/?period=year",
 							"host": [
