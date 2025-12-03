@@ -2,6 +2,7 @@ asgiref==3.9.1
 certifi==2025.8.3
 cffi==2.0.0
 charset-normalizer==3.4.3
+colorama==0.4.6
 cryptography==46.0.2
 defusedxml==0.7.1
 dj-database-url==3.0.1
@@ -12,12 +13,17 @@ djangorestframework_simplejwt==5.5.1
 djoser==2.3.3
 gunicorn==23.0.0
 idna==3.10
+iniconfig==2.3.0
 oauthlib==3.3.1
 packaging==25.0
+pluggy==1.6.0
 psycopg==3.2.12
 psycopg2-binary==2.9.11
 pycparser==2.23
+Pygments==2.19.2
 PyJWT==2.10.1
+pytest==9.0.1
+pytest-django==4.11.1
 python3-openid==3.2.0
 pytz==2025.2
 requests==2.32.5
