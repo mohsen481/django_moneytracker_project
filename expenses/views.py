@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_GET
 from django.db import models 
 from django.utils.dateparse import parse_datetime
-import datetime
+
 
 def index(request):          
     return render(request,'expenses/HomePage.html')
@@ -65,9 +65,9 @@ def show_transactions(request):
         else:
             incomes = Income.objects.filter(user=request.user)
         if sort_expenses=='asc':
-            expenses=Expense.objects.order_by('amount')
+            expenses=Expense.objects.filter(user=request.user).order_by('amount')
         elif sort_expenses=='desc':
-            expenses=Expense.objects.order_by('-amount')
+            expenses=Expense.objects.filter(user=request.user).order_by('-amount')
         else:
             expenses = Expense.objects.filter(user=request.user)
         context = {
@@ -111,16 +111,16 @@ def dashboard(request):
 def reports(request):
     start = request.GET.get('start')
     end = request.GET.get('end')
-    now = timezone.now()
+    now = timezone.now().date()
     period_label = "Custom Period"
 
     if start and end:
         try:
-            start_date = datetime.datetime.strptime(start, "%Y-%m-%d")
-            end_date = datetime.datetime.strptime(end, "%Y-%m-%d") + datetime.timedelta(days=1)
+            start_date = datetime.datetime.strptime(start, "%Y-%m-%d").date()
+            end_date = datetime.datetime.strptime(end, "%Y-%m-%d").date()
         except ValueError:
             start_date = now - datetime.timedelta(days=7)
-            end_date = now + datetime.timedelta(days=1)
+            end_date = now
             period_label = "Invalid date, showing last week"
         else:
             period_label = f"{start} to {end}"
@@ -138,10 +138,10 @@ def reports(request):
         else:
             start_date = now - datetime.timedelta(days=7)
             period_label = "Last Week"
-        end_date = now + datetime.timedelta(days=1)
+        end_date = now
 
-    incomes = Income.objects.filter(date__gte=start_date, date__lt=end_date, user=request.user)
-    expenses = Expense.objects.filter(date__gte=start_date, date__lt=end_date, user=request.user)
+    incomes = Income.objects.filter(date__gte=start_date, date__lte=end_date, user=request.user)
+    expenses = Expense.objects.filter(date__gte=start_date, date__lte=end_date, user=request.user)
 
     total_income = incomes.aggregate(total=models.Sum('amount'))['total'] or 0
     total_expense = expenses.aggregate(total=models.Sum('amount'))['total'] or 0
