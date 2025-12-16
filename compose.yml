@@ -1,0 +1,29 @@
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/dj_app
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DATABASE_URL=postgres://mohsen:yourpassword@db:5432/moneytracker_db
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:17
+    environment:
+      - POSTGRES_DB=moneytracker_db
+      - POSTGRES_USER=mohsen
+      - POSTGRES_PASSWORD=yourpassword
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mohsen -d moneytracker_db"]
+      timeout: 5s
+      retries: 5
+volumes:
+  db_data:
