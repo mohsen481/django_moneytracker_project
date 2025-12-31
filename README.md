@@ -8,8 +8,6 @@
 دسته‌بندی تراکنش‌ها
 
 مشاهده تاریخچه و موجودی
-## Live demo:
-https://django-moneytracker-project.onrender.com  
 ## ابزارها:
 python  
 django  
@@ -26,7 +24,8 @@ env\Scripts\activate      # ویندوز
 pip install -r requirements.txt
 python manage.py runserver
 ```
-
+## with Docker:
+docker compose up
 
 باز کردن در مرورگر:/http://127.0.0.1:8000
 
