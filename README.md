@@ -15,6 +15,7 @@ python
 django  
 django rest_framework  
 postgresql
+docker
 
 # نصب و اجرا
 ```bash
