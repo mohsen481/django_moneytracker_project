@@ -14,7 +14,7 @@ https://django-moneytracker-project.onrender.com
 python  
 django  
 django rest_framework  
-postgresql
+postgresql  
 docker
 
 # نصب و اجرا
